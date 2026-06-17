@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,28 +9,49 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="16dp">
+
+        <Button
+            android:id="@+id/btn_cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gerenciar Produtos"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btn_entrada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entrada de Mercadoria"
+            app:layout_constraintTop_toBottomOf="@id/btn_cadastro"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btn_venda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nova Comanda (Venda)"
+            app:layout_constraintTop_toBottomOf="@id/btn_entrada"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btn_separacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Separar Pedidos"
+            app:layout_constraintTop_toBottomOf="@id/btn_venda"
+            android:layout_marginBottom="16dp"/>
 
         <Button
             android:id="@+id/button_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous"
-            app:layout_constraintBottom_toTopOf="@id/textview_second"
+            android:text="Voltar"
+            app:layout_constraintTop_toBottomOf="@id/btn_separacao"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/textview_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
