@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.util.List;
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -16,7 +18,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_NOME     = "nome";
     public static final String COL_SENHA    = "senha";
     public static final String COL_PERFIL   = "perfil";
-
     public static final String TABLE_PRODUTOS = "produtos";
     public static final String COL_PROD_ID = "id";
     public static final String COL_PROD_NOME = "nome";
@@ -126,5 +127,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-
+    public Cursor listarProdutos() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_PRODUTOS, null, null, null, null, null, null);
+    }
 }

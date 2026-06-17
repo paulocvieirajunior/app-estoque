@@ -27,9 +27,16 @@
         <action
             android:id="@+id/action_SecondFragment_to_cadastroProdutoFragment"
             app:destination="@id/cadastroProdutoFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_listaProdutosFragment"
+            app:destination="@id/listaProdutosFragment" />
     </fragment>
     <fragment
         android:id="@+id/cadastroProdutoFragment"
         android:name="com.example.estoque.CadastroProdutoFragment"
         android:label="CadastroProdutoFragment" />
+    <fragment
+        android:id="@+id/listaProdutosFragment"
+        android:name="com.example.estoque.ListaProdutosFragment"
+        android:label="ListaProdutosFragment" />
 </navigation>

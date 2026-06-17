@@ -53,9 +53,16 @@ public class SecondFragment extends Fragment {
                         NavHostFragment.findNavController(SecondFragment.this)
                                 .navigate(R.id.action_SecondFragment_to_cadastroProdutoFragment)
                 );
+                binding.btnEntrada.setOnClickListener(v ->
+                        NavHostFragment.findNavController(this).navigate(R.id.action_SecondFragment_to_listaProdutosFragment)
+                );
                 break;
             case "estoquista":
                 binding.btnEntrada.setVisibility(View.VISIBLE);
+                binding.btnEntrada.setVisibility(View.VISIBLE);
+                binding.btnEntrada.setOnClickListener(v ->
+                        NavHostFragment.findNavController(this).navigate(R.id.action_SecondFragment_to_listaProdutosFragment)
+                );
                 break;
             case "vendedor":
                 binding.btnVenda.setVisibility(View.VISIBLE);
