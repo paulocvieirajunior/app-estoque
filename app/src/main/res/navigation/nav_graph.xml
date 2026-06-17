@@ -24,5 +24,12 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_cadastroProdutoFragment"
+            app:destination="@id/cadastroProdutoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cadastroProdutoFragment"
+        android:name="com.example.estoque.CadastroProdutoFragment"
+        android:label="CadastroProdutoFragment" />
 </navigation>

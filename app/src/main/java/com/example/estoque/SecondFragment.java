@@ -48,6 +48,11 @@ public class SecondFragment extends Fragment {
                 binding.btnEntrada.setVisibility(View.VISIBLE);
                 binding.btnVenda.setVisibility(View.VISIBLE);
                 binding.btnSeparacao.setVisibility(View.VISIBLE);
+
+                binding.btnCadastro.setOnClickListener(v ->
+                        NavHostFragment.findNavController(SecondFragment.this)
+                                .navigate(R.id.action_SecondFragment_to_cadastroProdutoFragment)
+                );
                 break;
             case "estoquista":
                 binding.btnEntrada.setVisibility(View.VISIBLE);
