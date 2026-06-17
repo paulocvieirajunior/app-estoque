@@ -17,6 +17,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_SENHA    = "senha";
     public static final String COL_PERFIL   = "perfil";
 
+    public static final String TABLE_PRODUTOS = "produtos";
+    public static final String COL_PROD_ID = "id";
+    public static final String COL_PROD_NOME = "nome";
+    public static final String COL_PROD_QTD = "quantidade";
+    public static final String COL_PROD_PRECO = "preco";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -31,6 +37,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COL_PERFIL  + " TEXT NOT NULL" +
                         ")";
         db.execSQL(createUsuarios);
+
+        String createProdutos = "CREATE TABLE " + TABLE_PRODUTOS + " (" +
+                COL_PROD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_PROD_NOME + " TEXT NOT NULL, " +
+                COL_PROD_QTD + " INTEGER NOT NULL, " +
+                COL_PROD_PRECO + " REAL NOT NULL" +
+                ")";
+        db.execSQL(createProdutos);
 
         inserirUsuario(db, "Pedro",    "1234", "gerente");
         inserirUsuario(db, "Maria", "5678", "estoquista");
@@ -70,4 +84,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return perfil;
     }
+
+    public boolean registrarVenda(int produtoId, int quantidadeVendida) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.query(TABLE_PRODUTOS, new String[]{COL_PROD_QTD},
+                COL_PROD_ID + "=?", new String[]{String.valueOf(produtoId)},
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int qtdAtual = cursor.getInt(0);
+
+            if (qtdAtual >= quantidadeVendida) {
+                ContentValues values = new ContentValues();
+                values.put(COL_PROD_QTD, qtdAtual - quantidadeVendida);
+
+                db.update(TABLE_PRODUTOS, values, COL_PROD_ID + "=?",
+                        new String[]{String.valueOf(produtoId)});
+
+                cursor.close();
+                db.close();
+                return true;
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return false;
+    }
+
+    public long inserirProduto(String nome, int qtd, double preco) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_PROD_NOME, nome);
+        values.put(COL_PROD_QTD, qtd);
+        values.put(COL_PROD_PRECO, preco);
+
+        long id = db.insert(TABLE_PRODUTOS, null, values);
+        db.close();
+        return id;
+    }
+
+
 }
